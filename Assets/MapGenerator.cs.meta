@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 665f2989e2d614b108138dabc73bc5d3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - _borderPrefab: {fileID: 784746903106197024, guid: 7fffe33243ace4187b326f27aa871841, type: 3}
+  - _roadPrefab: {fileID: 4184331730606658856, guid: 7e9cd6af128fa4ac3a83d22822c5aa1b, type: 3}
+  - _prefabs: {fileID: 11400000, guid: fc99927ce7f5749bcb45882f749b1fab, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

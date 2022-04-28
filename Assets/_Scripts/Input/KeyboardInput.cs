@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class KeyboardInput : BaseInput
 {
+    public Stack stack;
+
     private void Update()
     {
         ReadInput();

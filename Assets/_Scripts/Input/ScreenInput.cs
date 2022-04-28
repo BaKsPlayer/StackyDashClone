@@ -35,5 +35,6 @@ public class ScreenInput : BaseInput, IDragHandler, IBeginDragHandler
         SetDirection(direction);
 
         isAbleToMove = false;
+
     }
 }
