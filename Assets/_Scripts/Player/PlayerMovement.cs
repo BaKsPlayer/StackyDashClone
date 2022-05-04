@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
         _transform = GetComponent<Transform>();
     }
 
-    public void Move(RoadElement target)
+    public void Move(RoadBlock target)
     {
         _transform.position = Vector3.MoveTowards(_transform.position, target.Position, _speed * Time.deltaTime);
     }

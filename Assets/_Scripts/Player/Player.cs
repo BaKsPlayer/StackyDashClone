@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(PlayerMovement))]
 public class Player : MonoBehaviour
@@ -10,8 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Stack _stack;
     public Stack Stack => _stack;
 
-    [SerializeField] private RoadElement _startRoadElement;
-    public RoadElement CurrentRoadElement { get; private set; }
+    [SerializeField] private RoadBlock _startRoadElement;
+    public RoadBlock CurrentBlock { get; private set; }
 
     public State CurrentState { get; private set; }
     public PlayerMovement Movement { get; private set; }
@@ -22,10 +23,12 @@ public class Player : MonoBehaviour
 
     public Vector2 MoveDirection { get; private set; }
 
+    public UnityAction OnPlayerStopped;
+
     private void Awake()
     {
         Movement = GetComponent<PlayerMovement>();
-        CurrentRoadElement = _startRoadElement;
+        CurrentBlock = _startRoadElement;
 
         SetState(_idleState);
     }
@@ -35,6 +38,11 @@ public class Player : MonoBehaviour
         MoveDirection = direction;
     }
 
+    public void SetCurrentRoadBlock(RoadBlock block)
+    {
+        CurrentBlock = block;
+    }
+
     private void Update()
     {
         CurrentState?.Update();
@@ -42,14 +50,16 @@ public class Player : MonoBehaviour
 
     public void SetState(State state)
     {
-        if (state == null)
-        {
-            CurrentState = null;
-            return;
-        }
+        state ??= _idleState;
 
         CurrentState = Instantiate(state);
         CurrentState.SetPlayer(this);
         CurrentState.Init();
+    }
+
+    public void Stop()
+    {
+        SetState(_idleState);
+        OnPlayerStopped?.Invoke();
     }
 }
